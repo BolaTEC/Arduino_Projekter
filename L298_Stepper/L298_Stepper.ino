@@ -3,7 +3,7 @@ int in2 = 3;
 int in3 = 4;    
 int in4 = 5;    
 
-int delaytime = 2 ;
+int delaytime = 10 ;
 
 int stepfw[4][4] = { {1,0,0,1} , {0,1,0,1} ,{0,1,1,0}, {1,0,1,0} };    //Step clockwise
 int stepbw[4][4] = { {1,0,1,0} , {0,1,1,0}, {0,1,0,1}, {1,0,0,1}  };   //Step anti clockwise 
@@ -33,19 +33,27 @@ void setup()
 void loop()                     
 {
  int tal = readSerial();
- if (tal>0)
+ if (tal==0)
+ {
+   Serial.println(tal);
+  digitalWrite(in1, LOW);   
+  digitalWrite(in2, LOW);     
+  digitalWrite(in3, LOW);   
+  digitalWrite(in4, LOW);  
+ }
+ else if (tal>0)
  {
    Serial.println(tal);
 
    for(int n=0; n <tal; n++) 
      doStep(stepfw); 
  }  
- if ((tal<0)&&(tal!=-9999))
+ else if ((tal<0)&&(tal!=-9999))
  {
    Serial.println(tal);
 
    for(int n=0; n <tal*-1; n++) 
-     doStep(stepfw); 
+     doStep(stepbw); 
  }  
 }
 
