@@ -18,17 +18,31 @@
  * More commands here : https://www.engineersgarage.com/sites/default/files/newinline/Table-Listing-AT-Commands-HC-05-Bluetooth-Module.%20Jpg
  * 
  */
+#define KEY 2 // If it is input low level or connect to the air, the module is at paired or communication mode. If it’s input high level, the module will enter to AT mode.
+#define VCC 3 // Power til HC-05 modulet
+#define GND 4 // GND til HC-05 modulet
+#define BT_RX 5 // Forbindes til TxD på Hc-05 board
+#define BT_TX 6 // Forbindes til RxD på Hc-05 board
+#define LED 7 // LED out on BTH module
 
-#define BT_TX 4 // Forbindes til RxD på Hc-05 board
-#define BT_RX 7 // Forbindes til TxD på Hc-05 board
 
 #include <SoftwareSerial.h>
 SoftwareSerial mySerial(BT_RX, BT_TX);
 
 void setup() {
-  Serial.begin(38400); // This is default speed used by the HC-05 while in AT command mode.
+  pinMode(GND,OUTPUT);
+  pinMode(VCC,OUTPUT);
+  pinMode(KEY,OUTPUT);
+  digitalWrite(KEY,HIGH); // This needs to be high for module to be in AT-mode
+  delay(30);
+  pinMode(LED,INPUT);
+  // Power up module
+  digitalWrite(GND,LOW);
+  digitalWrite(VCC,HIGH);
+  
+  Serial.begin(9600);  // Arduino default speed, can be set to match HC-05 at 38400 
   delay(1000);
-  mySerial.begin(38400);  
+  mySerial.begin(38400); // This is default speed used by the HC-05 while in AT command mode.  
   delay(1000);
   Serial.println("Enter AT commands:");
 }
