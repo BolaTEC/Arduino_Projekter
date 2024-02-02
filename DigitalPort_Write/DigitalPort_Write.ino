@@ -24,7 +24,7 @@ void setup() {
 
 void loop() {
   int readVal = ReadSerial();
-  if ((readVal > 2)&&(readVal<=13)){
+  if ((readVal >= 2)&&(readVal<=13)){
     if (digitalReadOutputPin(readVal)==LOW)
     {
       digitalWrite(readVal,HIGH);
