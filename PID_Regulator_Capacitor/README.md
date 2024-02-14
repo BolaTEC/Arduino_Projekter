@@ -1,10 +1,15 @@
 # Arduino_Projekter
-##DIGITAL PORT TOGGLE
+## PID Regulator for Analog out over capacitor
 
-I denne kode kan du skrive til Arduinoen hvilken port du vil toggle.
+This code will make a PID regulator of an Arduino PWM signal
+a 10kOhm resistor and a 100uF capasitor.
 
-Port 0 og 1 er ikke tilladt, da de bruges til Serial USB forbindelsen.
+Setup the circuit as shown here below, and run the code.
 
-Så hvis du f.eks. skriver et tal mellem 2 og 13, så vil udgangen skifte fra LOW til HIGH 
+[!tip]
+I have found that running the code with an PuTTY terminal, it is easier to 
+save the Serial Monitor data for manipulatin in Excel.
 
-og omvendt næste gang du skriver tallet.
+![How to setup the Arduino for this code](Arduino_Setup.jpg)
+
+![Excel scrrenshot with differnt Kp, Ki and Kd values](Excel_example_PID.jpg)
