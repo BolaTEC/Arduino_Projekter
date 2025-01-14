@@ -8,7 +8,7 @@
 // Red   Phase B   = OUT3
 // Blue  Phase ~B  = OUT4
 //
-// Change delaytime variable to sHIGH of speed up stepper movement
+// Change delaytime variable to slow of speed up stepper movement
 // 
 int in1 = 2;    
 int in2 = 3;    
@@ -39,7 +39,7 @@ void setup()
   Serial.println("Give stepper order e.g. ");
   Serial.println("(-100 for CCW 100 steps or 100 for CW 100 steps 0= stop)");
   Serial.println("\n(>10000 for change delaytime (speed) e.g. 10500 gives 1500 ms delay)");
-    Serial.println("(10000 < delay < 32765)");
+  Serial.println("(10000 < delay < 32765)");
 
   
 }
