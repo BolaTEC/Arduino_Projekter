@@ -8,7 +8,7 @@
 // Red   Phase B   = OUT3
 // Blue  Phase ~B  = OUT4
 //
-// Change delaytime variable to slow of speed up stepper movement
+// Change delaytime variable to sHIGH of speed up stepper movement
 // 
 int in1 = 2;    
 int in2 = 3;    
@@ -30,10 +30,10 @@ void setup()
   pinMode(in3, OUTPUT);        
   pinMode(in4, OUTPUT);     
  
-  digitalWrite(in1, LOW); // Must be HIGH to avoid current consumption in idle state
-  digitalWrite(in2, LOW);     
-  digitalWrite(in3, LOW);   
-  digitalWrite(in4, LOW);     
+  digitalWrite(in1, HIGH); // Must be HIGH to avoid current consumption in idle state
+  digitalWrite(in2, HIGH);     
+  digitalWrite(in3, HIGH);   
+  digitalWrite(in4, HIGH);     
   Serial.begin(9600); 
   Serial.println("Ready\n\n");
   Serial.println("Give stepper order e.g. ");
@@ -52,10 +52,10 @@ void loop()
  if (tal==0)
  {
    Serial.println(tal);
-  digitalWrite(in1, LOW);   
-  digitalWrite(in2, LOW);     
-  digitalWrite(in3, LOW);   
-  digitalWrite(in4, LOW);  
+  digitalWrite(in1, HIGH);   
+  digitalWrite(in2, HIGH);     
+  digitalWrite(in3, HIGH);   
+  digitalWrite(in4, HIGH);  
  }
  else if (tal>0)
  {

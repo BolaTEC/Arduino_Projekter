@@ -22,7 +22,7 @@ int ledToggle = 0;
 void setup() {
 
   //***********************************
-  // Set inout and output pins, set default value
+  // Set input and output pins, set default value
   //***********************************
     pinMode(enable,OUTPUT);
     digitalWrite(enable,LOW);
