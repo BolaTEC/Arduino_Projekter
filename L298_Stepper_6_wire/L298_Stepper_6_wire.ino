@@ -16,7 +16,7 @@ int in2 = 3;
 int in3 = 4;    
 int in4 = 5;    
 
-int delaytime = 10;
+int delaytime =10;
 
 int stepfw[4][4] = { {1,0,0,1} , {0,1,0,1} ,{0,1,1,0}, {1,0,1,0} };    //Step clockwise
 int stepbw[4][4] = { {1,0,1,0} , {0,1,1,0}, {0,1,0,1}, {1,0,0,1}  };   //Step anti clockwise 
@@ -58,16 +58,10 @@ void loop()
  {
    Serial.println(tal);
 
+  tal =100;
    for(int n=0; n <tal; n++) 
      doStep(stepfw); 
- }  
- else if ((tal<0)&&(tal!=-9999))
- {
-   Serial.println(tal);
 
-   for(int n=0; n <tal*-1; n++) 
-     doStep(stepbw); 
- }  
 }
 
 /***************************************/
