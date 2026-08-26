@@ -11,13 +11,13 @@
 //***********************************
 //Setup constants
 //***********************************
-const int pwm = 6;
+const int pwm = 9;
 const byte interruptPin = 2;
 
 //***********************************
 // Global variable
 //***********************************
-volatile float rev=0;
+volatile int rev=0;
 long rpm;
 int oldtime=0;
 int time;
@@ -48,7 +48,7 @@ void setup() {
     //***********************************
     pinMode(pwm,OUTPUT);
     analogWrite(pwm,0);
-    pinMode(interruptPin, INPUT_PULLUP);
+    pinMode(interruptPin, INPUT);
     
     //***********************************
     //Serial connection 9600 Baud
@@ -70,11 +70,10 @@ void setup() {
 
 void loop()
 {
-  delay(2000);
+  delay(300);
   detachInterrupt(digitalPinToInterrupt(interruptPin));           //detaches the interrupt
   time=millis()-oldtime;      //finds the time 
-  oldtime=millis();           //saves the current time
-  rpm=(rev/time)*60000/4;     //calculates rpm div by four due to 4 holes in plate going through sensor
+  rpm=(rev/4)*60000/time;     //calculates rpm div by four due to 4 holes in plate going through sensor
   Serial.print(rev);          // measured value
   rev=0;
   Serial.print(" ");          // measured value
@@ -82,6 +81,7 @@ void loop()
   Serial.print(" ");          // measured value
   Serial.println(rpm);        // measured value
   MotorControl();
+  oldtime=millis();           //saves the current time
   attachInterrupt(digitalPinToInterrupt(interruptPin),isr,RISING);// activate interrupt again
 }
 
