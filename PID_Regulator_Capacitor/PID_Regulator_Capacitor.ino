@@ -1,8 +1,8 @@
 //***********************************
 // Compiler parameters
 //***********************************
-#define _IFDEBUG_ false
-#define _GRAPH_OF_PF_ false
+#define _IFDEBUG__
+#define _GRAPH_OF_PF__
 //***********************************
 // Constant variable
 //***********************************
@@ -28,8 +28,8 @@ float outPID=0.0;
 float process_feedback=0.0;
 float previous_error = 0.0;
 
-float Kp = 1.0;
-float Ki = 1.0;
+float Kp = 1.1;
+float Ki = 5.0;
 float Kd = 0.5;
 
 float integral=0.0;
@@ -81,13 +81,18 @@ int dt=100; // dt
         pwmInterval=0;
 
      analogWrite(pwmPin,pwmInterval);
-#if (!_GRAPH_OF_PF_)
+#ifdef _GRAPH_OF_PF_
      Serial.print("; Time: ");
      Serial.print(measureTime);
      Serial.print("; Pf: ");
 #endif
      Serial.print(process_feedback);  // <-- Print only this when _GRAPH_OF_PF_ is defined
-#if (!_GRAPH_OF_PF_)
+     Serial.print(" ");  // <-- Print only this when _GRAPH_OF_PF_ is defined
+     Serial.print(0);  // <-- Print only this when _GRAPH_OF_PF_ is defined
+     Serial.print(" ");  // <-- Print only this when _GRAPH_OF_PF_ is defined
+     Serial.print(5);  // <-- Print only this when _GRAPH_OF_PF_ is defined
+
+#ifdef _GRAPH_OF_PF_
      Serial.print("; Out: ");
      Serial.print(outPID);
      Serial.print("; PWM: ");
@@ -110,7 +115,7 @@ int dt=100; // dt
   float derivative = (error - prev_err)/((float)dt/1000.0);
   float output = (Kp*error) + (Ki*integral) + (Kd*derivative);
   
-#if (_IFDEBUG_)
+#ifdef _IFDEBUG_
       Serial.print("PrevE: ");
       Serial.print(prev_err);
       Serial.print("; E: ");
