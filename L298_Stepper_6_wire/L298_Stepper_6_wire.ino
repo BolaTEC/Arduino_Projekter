@@ -14,7 +14,8 @@
 int in1 = 2;    
 int in2 = 3;    
 int in3 = 4;    
-int in4 = 5;    
+int in4 = 5;
+
 
 int delaytime =10;
 
@@ -48,19 +49,23 @@ void loop()
  int tal = readSerial();
  if (tal==0)
  {
-   Serial.println(tal);
-  digitalWrite(in1, HIGH);   
-  digitalWrite(in2, HIGH);     
-  digitalWrite(in3, HIGH);   
-  digitalWrite(in4, HIGH);  
+    Serial.println(tal);
+    digitalWrite(in1, HIGH);   
+    digitalWrite(in2, HIGH);     
+    digitalWrite(in3, HIGH);   
+    digitalWrite(in4, HIGH);  
  }
  else if (tal>0)
  {
    Serial.println(tal);
-
-  tal =100;
    for(int n=0; n <tal; n++) 
-     doStep(stepfw); 
+      doStep(stepfw); 
+ }
+  else if (tal<0 && tal!=-9999) {
+   Serial.println(tal);
+   for(int n=0; n <tal*-1; n++) 
+      doStep(stepbw); 
+ }
 
 }
 
@@ -76,11 +81,13 @@ void doStep(int steps[4][4]){
    delay(delaytime);  
  }
 }
+
 //***********************************
 // Read data from UART connection
 //***********************************
 int readSerial() {
   int incomingByte = -9999;
+
   if (Serial.available() > 0) {
     // read the incoming byte:
     incomingByte = Serial.parseInt();
