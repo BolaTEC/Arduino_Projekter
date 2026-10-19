@@ -11,10 +11,10 @@
 //
 // Change delaytime variable to slow of speed up stepper movement
 // 
-int in1 = 2;    
-int in2 = 3;    
-int in3 = 4;    
-int in4 = 5;
+int in1 = 5; // These outputs should reflect the attached drawing pin5 to in1 etc.   
+int in2 = 4;    
+int in3 = 3;    
+int in4 = 2;
 
 
 int delaytime =10;
