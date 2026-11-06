@@ -33,7 +33,7 @@ void setup() {
   pinMode(GND,OUTPUT);
   pinMode(VCC,OUTPUT);
   pinMode(KEY,OUTPUT);
-  digitalWrite(KEY,HIGH); // This needs to be high for module to be in AT-mode
+  digitalWrite(KEY,LOW); // This needs to be high for module to be in AT-mode
   delay(30);
   pinMode(LED,INPUT);
   // Power up module
@@ -42,7 +42,7 @@ void setup() {
   
   Serial.begin(9600);  // Arduino default speed, can be set to match HC-05 at 38400 
   delay(1000);
-  mySerial.begin(38400); // This is default speed used by the HC-05 while in AT command mode.  
+  mySerial.begin(9600); // 38400 This is default speed used by the HC-05 while in AT command mode.  
   delay(1000);
   Serial.println("Enter AT commands:");
 }
